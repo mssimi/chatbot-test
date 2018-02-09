@@ -2,7 +2,7 @@
 
 namespace App\Curl;
 
-class Curl
+final class Curl
 {
     /**
      * @param mixed[] $getParams

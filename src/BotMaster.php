@@ -4,7 +4,7 @@ namespace App;
 
 use App\Bot\Bot;
 
-class BotMaster
+final class BotMaster
 {
     /**
      * @var Bot

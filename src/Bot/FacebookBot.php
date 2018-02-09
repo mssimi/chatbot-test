@@ -26,6 +26,7 @@ final class FacebookBot implements Bot
     {
         $this->request = $request;
         $this->curl = $curl;
+        $this->verify();
     }
 
     /**
@@ -67,5 +68,16 @@ final class FacebookBot implements Bot
             ['access_token' => getenv('ACCESS_TOKEN')],
             ['Content-Type: application/json']
         );
+    }
+
+    private function verify(): void
+    {
+        if ($this->request->isMethod('GET') &&
+            $this->request->query->get('hub_mode') === 'subscribe' &&
+            $this->request->query->get('hub_verify_token') === getenv('VERIFY_TOKEN'))
+        {
+            echo $this->request->query->get('hub_challenge');
+            exit;
+        }
     }
 }

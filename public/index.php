@@ -4,9 +4,12 @@ use App\Bot\FacebookBot;
 use App\BotMaster;
 use App\Curl\Curl;
 use Symfony\Component\Debug\Debug;
+use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\Request;
 
 require __DIR__.'/../vendor/autoload.php';
+
+(new Dotenv())->load(__DIR__.'/../.env');
 
 Debug::enable();
 
