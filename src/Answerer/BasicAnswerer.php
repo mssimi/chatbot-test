@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App;
+namespace App\Answerer;
 
 use App\Bot\Bot;
 
-final class BotMaster
+final class BasicAnswerer implements Answerer
 {
     /**
      * @var Bot
@@ -26,8 +26,10 @@ final class BotMaster
         $this->replies[$msg] = $answer;
     }
 
-    public function tryToAnswer(): void
+    public function reply(): void
     {
-        $this->bot->tryToAnswer($this->replies);
+        if (array_key_exists($this->bot->message(), $this->replies)) {
+            $this->bot->send($this->replies[$this->bot->message()]);
+        }
     }
 }

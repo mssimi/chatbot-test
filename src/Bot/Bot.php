@@ -4,8 +4,12 @@ namespace App\Bot;
 
 interface Bot
 {
+    public function message(): ?string;
+
     /**
-     * @param string[] $replies
+     * @return mixed[]|null
      */
-    public function tryToAnswer(array $replies): void;
+    public function nlp(): ?array;
+
+    public function send(string $reply): void;
 }

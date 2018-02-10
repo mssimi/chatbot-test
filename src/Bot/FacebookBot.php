@@ -29,19 +29,30 @@ final class FacebookBot implements Bot
         $this->verify();
     }
 
+    public function message(): ?string
+    {
+        return $this->content()['entry'][0]['messaging'][0]['message']['text'];
+    }
+
     /**
      * @inheritdoc
      */
-    public function tryToAnswer(array $replies): void
+    public function nlp(): ?array
     {
-        if (array_key_exists($this->message(), $replies)) {
-            $this->send($replies[$this->message()]);
-        }
+        return $this->content()['entry'][0]['messaging'][0]['message']['nlp'];
     }
 
-    private function message(): ?string
+    public function send(string $reply): void
     {
-        return $this->content()['entry'][0]['messaging'][0]['message']['text'];
+        $this->curl->post(
+            self::URL,
+            [
+                'recipient' => ['id' => $this->senderId()],
+                'message' => ['text' => $reply],
+            ],
+            ['access_token' => getenv('ACCESS_TOKEN')],
+            ['Content-Type: application/json']
+        );
     }
 
     private function senderId(): string
@@ -54,28 +65,18 @@ final class FacebookBot implements Bot
      */
     private function content(): array
     {
-        return json_decode($this->request->getContent(), true);
-    }
+        if (! $this->request->getContent()) {
+            return [];
+        }
 
-    private function send(string $answer): void
-    {
-        $this->curl->post(
-            self::URL,
-            [
-                'recipient' => ['id' => $this->senderId()],
-                'message' => ['text' => $answer],
-            ],
-            ['access_token' => getenv('ACCESS_TOKEN')],
-            ['Content-Type: application/json']
-        );
+        return json_decode($this->request->getContent(), true);
     }
 
     private function verify(): void
     {
         if ($this->request->isMethod('GET') &&
             $this->request->query->get('hub_mode') === 'subscribe' &&
-            $this->request->query->get('hub_verify_token') === getenv('VERIFY_TOKEN'))
-        {
+            $this->request->query->get('hub_verify_token') === getenv('VERIFY_TOKEN')) {
             echo $this->request->query->get('hub_challenge');
             exit;
         }
