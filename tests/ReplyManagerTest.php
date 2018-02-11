@@ -6,7 +6,7 @@ use App\Answerer\Answerer;
 use App\ReplyManager;
 use PHPUnit\Framework\TestCase;
 
-class ReplyManagerTest extends TestCase
+final class ReplyManagerTest extends TestCase
 {
     /** @var ReplyManager */
     private $replyManager;

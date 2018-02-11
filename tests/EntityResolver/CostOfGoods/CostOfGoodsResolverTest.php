@@ -6,7 +6,7 @@ use App\EntityResolver\CostOfGoods\Adapter\CostOfGoodsAdapter;
 use App\EntityResolver\CostOfGoods\CostOfGoodsResolver;
 use PHPUnit\Framework\TestCase;
 
-class CostOfGoodsResolverTest extends TestCase
+final class CostOfGoodsResolverTest extends TestCase
 {
     /**
      * @var CostOfGoodsResolver

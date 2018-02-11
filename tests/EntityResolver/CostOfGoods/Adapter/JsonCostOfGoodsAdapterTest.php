@@ -5,7 +5,7 @@ namespace App\Tests\EntityResolver\CostOfGoods\Adapter;
 use App\EntityResolver\CostOfGoods\Adapter\JsonCostOfGoodsAdapter;
 use PHPUnit\Framework\TestCase;
 
-class JsonCostOfGoodsAdapterTest extends TestCase
+final class JsonCostOfGoodsAdapterTest extends TestCase
 {
     /**
      * @var JsonCostOfGoodsAdapter

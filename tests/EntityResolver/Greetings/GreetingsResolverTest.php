@@ -6,7 +6,7 @@ use App\EntityResolver\Greetings\Adapter\GreetingsAdapter;
 use App\EntityResolver\Greetings\GreetingsResolver;
 use PHPUnit\Framework\TestCase;
 
-class GreetingsResolverTest extends TestCase
+final class GreetingsResolverTest extends TestCase
 {
     /**
      * @var GreetingsResolver

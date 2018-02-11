@@ -5,7 +5,7 @@ namespace App\Tests\EntityResolver\Greetings\Adapter;
 use App\EntityResolver\Greetings\Adapter\JsonGreetingsAdapter;
 use PHPUnit\Framework\TestCase;
 
-class JsonGreetingsAdapterTest extends TestCase
+final class JsonGreetingsAdapterTest extends TestCase
 {
     /**
      * @var JsonGreetingsAdapter
