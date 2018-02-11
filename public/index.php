@@ -11,6 +11,7 @@ use App\EntityResolver\Greetings\Adapter\JsonGreetingsAdapter;
 use App\EntityResolver\Greetings\GreetingsResolver;
 use App\EntityResolver\Reminder\Adapter\TextReminderAdapter;
 use App\EntityResolver\Reminder\ReminderResolver;
+use App\Validator\FacebookValidator;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,8 +28,9 @@ if($_SERVER['DEBUG']){
 
 $request = Request::createFromGlobals();
 $curl = new Curl();
+$facebookValidator = new FacebookValidator();
 
-$facebookBot = new FacebookBot($request, $curl);
+$facebookBot = new FacebookBot($request, $curl, $facebookValidator);
 
 $jsonGreetingsAdapter = new JsonGreetingsAdapter(sprintf('%sconfig/greetings.json', $projectDir));
 $textReminderAdapter = new TextReminderAdapter(sprintf('%sconfig/reminder.txt', $projectDir));
