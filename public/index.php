@@ -36,7 +36,7 @@ $jsonCostOfGoodsAdapter = new JsonCostOfGoodsAdapter(sprintf('%sconfig/products.
 
 $nlpAnswerer = new NLPAnswerer($facebookBot);
 $nlpAnswerer->addEntityResolver('greetings', new GreetingsResolver($jsonGreetingsAdapter, 0.75));
-$nlpAnswerer->addEntityResolver('reminder', new ReminderResolver($textReminderAdapter, 0.75));
+$nlpAnswerer->addEntityResolver('custom_reminder', new ReminderResolver($textReminderAdapter, 0.75));
 $nlpAnswerer->addEntityResolver('cost_of_goods', new CostOfGoodsResolver($jsonCostOfGoodsAdapter, 0.75));
 
 $basicAnswerer = new BasicAnswerer($facebookBot);
