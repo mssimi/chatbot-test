@@ -29,6 +29,10 @@ final class NLPAnswerer implements Answerer
 
     public function reply(): void
     {
+        if (! $this->bot->isValid()) {
+            return;
+        }
+
         foreach ($this->bot->entities() as $entityName => $entity) {
             if (array_key_exists($entityName, $this->entityResolvers) && $reply = $this->entityResolvers[$entityName]->reply($entity[0], $this->bot->entities())) {
                 $this->bot->send($reply);

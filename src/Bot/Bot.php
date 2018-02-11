@@ -12,4 +12,6 @@ interface Bot
     public function entities(): array;
 
     public function send(string $reply): void;
+
+    public function isValid(): bool;
 }

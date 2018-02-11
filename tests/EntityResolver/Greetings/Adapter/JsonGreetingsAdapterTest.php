@@ -14,14 +14,14 @@ class JsonGreetingsAdapterTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->jsonGreetingsAdapter = new JsonGreetingsAdapter(__DIR__.'/Config/greetings.json');
+        $this->jsonGreetingsAdapter = new JsonGreetingsAdapter(__DIR__ . '/Config/greetings.json');
     }
 
     public function test(): void
     {
         $greetings = $this->jsonGreetingsAdapter->greetings();
 
-        $expected = ['Hi','Hello'];
+        $expected = ['Hi', 'Hello'];
 
         $this->assertSame($greetings, $expected);
     }

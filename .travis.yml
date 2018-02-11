@@ -21,6 +21,6 @@ before_install:
 install: composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
 
 script:
-  - ./vendor/bin/phpstan analyse src
-  - ./vendor/bin/ecs check src
+  - ./vendor/bin/phpstan analyse src tests
+  - ./vendor/bin/ecs check src tests
   - phpunit

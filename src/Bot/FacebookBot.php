@@ -4,6 +4,8 @@ namespace App\Bot;
 
 use App\Curl\Curl;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Validation;
 
 final class FacebookBot implements Bot
 {
@@ -27,6 +29,32 @@ final class FacebookBot implements Bot
         $this->request = $request;
         $this->curl = $curl;
         $this->verify();
+    }
+
+    public function isValid(): bool
+    {
+        $validator = Validation::createValidator();
+
+        $constraint = new Assert\Collection([
+            'entry' => new Assert\Collection([
+                'messaging' => new Assert\Collection([
+                    'sender' => new Assert\Collection([
+                        'id' => new Assert\NotBlank(),
+                    ]),
+                    'recipient' => new Assert\Collection([
+                        'id' => new Assert\NotBlank(),
+                    ]),
+                    'message' => new Assert\Collection([
+                        'text' => new Assert\NotBlank(),
+                        'nlp' => new Assert\Collection([]),
+                    ]),
+                ]),
+            ]),
+        ]);
+
+        $errors = $validator->validate($this->content(), $constraint);
+
+        return count($errors) === 0;
     }
 
     public function message(): ?string

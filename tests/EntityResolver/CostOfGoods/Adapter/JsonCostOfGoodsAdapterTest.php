@@ -14,7 +14,7 @@ class JsonCostOfGoodsAdapterTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->jsonCostOfGoodsAdapter = new JsonCostOfGoodsAdapter(__DIR__.'/Config/products.json');
+        $this->jsonCostOfGoodsAdapter = new JsonCostOfGoodsAdapter(__DIR__ . '/Config/products.json');
     }
 
     public function test(): void
