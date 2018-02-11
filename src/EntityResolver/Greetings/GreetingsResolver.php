@@ -3,12 +3,12 @@
 namespace App\EntityResolver\Greetings;
 
 use App\EntityResolver\EntityResolver;
-use App\EntityResolver\Greetings\Adapter\JsonGreetingsAdapter;
+use App\EntityResolver\Greetings\Adapter\GreetingsAdapter;
 
 final class GreetingsResolver implements EntityResolver
 {
     /**
-     * @var JsonGreetingsAdapter
+     * @var GreetingsAdapter
      */
     private $jsonGreetingsAdapter;
 
@@ -17,7 +17,7 @@ final class GreetingsResolver implements EntityResolver
      */
     private $minConfidence;
 
-    public function __construct(JsonGreetingsAdapter $jsonGreetingsAdapter, float $minConfidence)
+    public function __construct(GreetingsAdapter $jsonGreetingsAdapter, float $minConfidence)
     {
         $this->jsonGreetingsAdapter = $jsonGreetingsAdapter;
         $this->minConfidence = $minConfidence;
