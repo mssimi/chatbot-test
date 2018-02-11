@@ -13,26 +13,36 @@ final class ReminderResolver implements EntityResolver
      */
     private $reminderAdapter;
 
-    public function __construct(ReminderAdapter $reminderAdapter)
+    /**
+     * @var float
+     */
+    private $minConfidence;
+
+    public function __construct(ReminderAdapter $reminderAdapter, float $minConfidence)
     {
         $this->reminderAdapter = $reminderAdapter;
+        $this->minConfidence = $minConfidence;
     }
 
     /**
      * @inheritdoc
      */
-    public function reply(?string $value = null, array $extraEntities = []): string
+    public function reply(array $entity, array $extraEntities = []): ?string
     {
+        if ($entity['confidence'] < $this->minConfidence) {
+            return null;
+        }
+
         if (array_key_exists('datetime', $extraEntities)) {
             $reply = sprintf(
                 'Setting reminder "%s" at %s',
-                $value,
+                $entity['value'],
                 (new DateTime($extraEntities['datetime'][0]['value']))->format('Y-m-d H:i:s')
             );
         }
 
         if (! array_key_exists('datetime', $extraEntities)) {
-            $reply = sprintf('Setting reminder "%s"', $value);
+            $reply = sprintf('Setting reminder "%s"', $entity['value']);
         }
 
         $this->reminderAdapter->save($reply);

@@ -3,3 +3,7 @@ includes:
     - vendor/symplify/easy-coding-standard/config/php71.neon
     - vendor/symplify/easy-coding-standard/config/common.neon
     - vendor/symplify/easy-coding-standard/config/clean-code.neon
+
+parameters:
+    skip_codes:
+        - PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff.Found

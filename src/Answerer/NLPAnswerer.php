@@ -29,26 +29,10 @@ final class NLPAnswerer implements Answerer
 
     public function reply(): void
     {
-        foreach ($this->entities() as $entity => $value) {
-            if (array_key_exists($entity, $this->entityResolvers)) {
-                $this->bot->send($this->entityResolvers[$entity]->reply($this->value($entity), $this->entities()));
+        foreach ($this->bot->entities() as $entityName => $entity) {
+            if (array_key_exists($entityName, $this->entityResolvers) && $reply = $this->entityResolvers[$entityName]->reply($entity[0], $this->bot->entities())) {
+                $this->bot->send($reply);
             }
         }
-    }
-
-    /**
-     * @return mixed[]
-     */
-    private function entities(): array
-    {
-        return $this->bot->nlp()['entities'];
-    }
-
-    /**
-     * @return mixed
-     */
-    private function value(string $entity)
-    {
-        return $this->bot->nlp()['entities'][$entity][0]['value'];
     }
 }

@@ -31,15 +31,15 @@ final class FacebookBot implements Bot
 
     public function message(): ?string
     {
-        return $this->content()['entry'][0]['messaging'][0]['message']['text'];
+        return $this->messaging()['message']['text'];
     }
 
     /**
      * @inheritdoc
      */
-    public function nlp(): ?array
+    public function entities(): array
     {
-        return $this->content()['entry'][0]['messaging'][0]['message']['nlp'];
+        return $this->messaging()['message']['nlp']['entities'];
     }
 
     public function send(string $reply): void
@@ -55,13 +55,23 @@ final class FacebookBot implements Bot
         );
     }
 
+    private function verify(): void
+    {
+        if ($this->request->isMethod('GET') &&
+            $this->request->query->get('hub_mode') === 'subscribe' &&
+            $this->request->query->get('hub_verify_token') === getenv('VERIFY_TOKEN')) {
+            echo $this->request->query->get('hub_challenge');
+            exit;
+        }
+    }
+
     private function senderId(): string
     {
-        return $this->content()['entry'][0]['messaging'][0]['sender']['id'];
+        return $this->messaging()['sender']['id'];
     }
 
     /**
-     * @return mixed[]
+     * @return string[]
      */
     private function content(): array
     {
@@ -72,13 +82,19 @@ final class FacebookBot implements Bot
         return json_decode($this->request->getContent(), true);
     }
 
-    private function verify(): void
+    /**
+     * @return string[]
+     */
+    private function entry(): array
     {
-        if ($this->request->isMethod('GET') &&
-            $this->request->query->get('hub_mode') === 'subscribe' &&
-            $this->request->query->get('hub_verify_token') === getenv('VERIFY_TOKEN')) {
-            echo $this->request->query->get('hub_challenge');
-            exit;
-        }
+        return $this->content()['entry'][0];
+    }
+
+    /**
+     * @return string[]
+     */
+    private function messaging(): array
+    {
+        return $this->entry()['messaging'][0];
     }
 }

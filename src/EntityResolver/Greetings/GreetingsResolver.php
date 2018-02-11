@@ -12,16 +12,26 @@ final class GreetingsResolver implements EntityResolver
      */
     private $jsonGreetingsAdapter;
 
-    public function __construct(JsonGreetingsAdapter $jsonGreetingsAdapter)
+    /**
+     * @var float
+     */
+    private $minConfidence;
+
+    public function __construct(JsonGreetingsAdapter $jsonGreetingsAdapter, float $minConfidence)
     {
         $this->jsonGreetingsAdapter = $jsonGreetingsAdapter;
+        $this->minConfidence = $minConfidence;
     }
 
     /**
      * @inheritdoc
      */
-    public function reply(?string $value = null, array $extraEntites = []): string
+    public function reply(array $entity, array $extraEntities = []): ?string
     {
+        if ($entity['confidence'] < $this->minConfidence) {
+            return null;
+        }
+
         $greetings = $this->jsonGreetingsAdapter->greetings();
 
         return $greetings[array_rand($greetings, 1)];

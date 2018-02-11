@@ -7,9 +7,9 @@ interface Bot
     public function message(): ?string;
 
     /**
-     * @return mixed[]|null
+     * @return mixed[]
      */
-    public function nlp(): ?array;
+    public function entities(): array;
 
     public function send(string $reply): void;
 }

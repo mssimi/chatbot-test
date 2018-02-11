@@ -5,7 +5,8 @@ namespace App\EntityResolver;
 interface EntityResolver
 {
     /**
+     * @param mixed[] $entity
      * @param mixed[] $extraEntities
      */
-    public function reply(?string $value = null, array $extraEntities = []): string;
+    public function reply(array $entity, array $extraEntities = []): ?string;
 }

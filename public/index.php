@@ -35,9 +35,9 @@ $textReminderAdapter = new TextReminderAdapter(sprintf('%sconfig/reminder.txt', 
 $jsonCostOfGoodsAdapter = new JsonCostOfGoodsAdapter(sprintf('%sconfig/products.json', $projectDir));
 
 $nlpAnswerer = new NLPAnswerer($facebookBot);
-$nlpAnswerer->addEntityResolver('greetings', new GreetingsResolver($jsonGreetingsAdapter));
-$nlpAnswerer->addEntityResolver('reminder', new ReminderResolver($textReminderAdapter));
-$nlpAnswerer->addEntityResolver('cost_of_goods', new CostOfGoodsResolver($jsonCostOfGoodsAdapter));
+$nlpAnswerer->addEntityResolver('greetings', new GreetingsResolver($jsonGreetingsAdapter, 0.75));
+$nlpAnswerer->addEntityResolver('reminder', new ReminderResolver($textReminderAdapter, 0.75));
+$nlpAnswerer->addEntityResolver('cost_of_goods', new CostOfGoodsResolver($jsonCostOfGoodsAdapter, 0.75));
 
 $basicAnswerer = new BasicAnswerer($facebookBot);
 $basicAnswerer->addReply('Neviděla jste tudy jít děti?', 'Pleju len.');
