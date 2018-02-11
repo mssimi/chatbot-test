@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests;
+namespace App\Tests\Answerer;
 
 use App\Answerer\BasicAnswerer;
 use App\Bot\Bot;
@@ -32,7 +32,7 @@ final class BasicAnswererTest extends TestCase
 
     public function test(): void
     {
-        $this->basicAnswerer->addReply('Hi','Hello');
+        $this->basicAnswerer->addReply('Hi', 'Hello');
         $this->basicAnswerer->reply();
     }
 }

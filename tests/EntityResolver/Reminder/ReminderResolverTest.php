@@ -2,8 +2,8 @@
 
 namespace App\Tests\EntityResolver\Reminder;
 
-use App\EntityResolver\Reminder\ReminderResolver;
 use App\EntityResolver\Reminder\Adapter\ReminderAdapter;
+use App\EntityResolver\Reminder\ReminderResolver;
 use PHPUnit\Framework\TestCase;
 
 final class ReminderResolverTest extends TestCase
