@@ -7,6 +7,9 @@ use Symfony\Component\Validator\Validation;
 
 final class FacebookValidator implements Validator
 {
+    /**
+     * @inheritdoc
+     */
     public function validate($input): bool
     {
         $validator = Validation::createValidator();
