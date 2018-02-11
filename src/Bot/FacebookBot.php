@@ -22,6 +22,7 @@ final class FacebookBot implements Bot
      * @var Curl
      */
     private $curl;
+
     /**
      * @var Validator
      */

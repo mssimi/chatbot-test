@@ -13,9 +13,9 @@ final class FacebookValidator implements Validator
 
         $constraint = new Assert\Collection([
             'fields' => [
-                'entry' => $this->entry()
+                'entry' => $this->entry(),
             ],
-            'allowExtraFields' => true
+            'allowExtraFields' => true,
         ]);
 
         $errors = $validator->validate($input, $constraint);
@@ -28,9 +28,9 @@ final class FacebookValidator implements Validator
         return new Assert\Collection([
             '0' => new Assert\Collection([
                 'fields' => [
-                    'messaging' => $this->messaging()
+                    'messaging' => $this->messaging(),
                 ],
-                'allowExtraFields' => true
+                'allowExtraFields' => true,
             ]),
         ]);
     }
@@ -51,10 +51,10 @@ final class FacebookValidator implements Validator
                             'text' => new Assert\NotBlank(),
                             'nlp' => new Assert\Collection([]),
                         ],
-                        'allowExtraFields' => true
+                        'allowExtraFields' => true,
                     ]),
                 ],
-                'allowExtraFields' => true
+                'allowExtraFields' => true,
             ]),
         ]);
     }
