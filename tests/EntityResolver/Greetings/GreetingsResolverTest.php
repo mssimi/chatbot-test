@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Tests\EntityResolver\Greetings;
+namespace App\Tests\EntityResolver\Greetings;
 
 use App\EntityResolver\Greetings\Adapter\GreetingsAdapter;
 use App\EntityResolver\Greetings\GreetingsResolver;

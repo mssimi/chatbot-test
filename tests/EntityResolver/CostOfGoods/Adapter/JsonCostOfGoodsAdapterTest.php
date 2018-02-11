@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Tests\EntityResolver\CostOfGoods\Adapter;
+namespace App\Tests\EntityResolver\CostOfGoods\Adapter;
 
 use App\EntityResolver\CostOfGoods\Adapter\JsonCostOfGoodsAdapter;
 use PHPUnit\Framework\TestCase;

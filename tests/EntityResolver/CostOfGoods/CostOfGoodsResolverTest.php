@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Tests\EntityResolver\CostOfGoods;
+namespace App\Tests\EntityResolver\CostOfGoods;
 
 use App\EntityResolver\CostOfGoods\Adapter\CostOfGoodsAdapter;
 use App\EntityResolver\CostOfGoods\CostOfGoodsResolver;

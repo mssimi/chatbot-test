@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Tests\EntityResolver\Greetings\Adapter;
+namespace App\Tests\EntityResolver\Greetings\Adapter;
 
 use App\EntityResolver\Greetings\Adapter\JsonGreetingsAdapter;
 use PHPUnit\Framework\TestCase;
